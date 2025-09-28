@@ -1,0 +1,134 @@
+/* 余白をリセット */
+body, h1, p {
+  margin: 0;
+}
+
+/* 文字サイズの指定 */
+p, a {
+  font-size: 20px;
+}
+/* header部分のスタイル */
+header {
+  margin-bottom: 20px;         /* 下に余白 */
+  background-color: rgb(244, 79, 79); /* 背景色 */
+  text-align: center;          /* 中の要素を中央寄せ */
+  padding: 10px 0;             /* 上下に少し余白を追加すると見やすい */
+}
+
+/* h1の文字色 */
+header h1 {
+  color: rgb(255, 255, 255);   /* 白文字 */
+}
+/* ========== 初期リセット / 下準備 ========== */
+html, body, h1, p {
+  margin: 0;                   /* 上下左右の外余白をゼロに */
+}
+p, a {
+  font-size: 20px;             /* 記事内の p と a を 20px に */
+}
+
+/* ========== ヘッダー ========== */
+header {
+  padding: 10px 0;             /* ある程度の高さが欲しければ調整 */
+  margin-bottom: 20px;         /* 下の余白 20px */
+  background: rgb(244, 79, 79);
+  text-align: center;          /* 中の要素を中央揃え */
+}
+header h1 {
+  color: rgb(255, 255, 255);   /* 見出しの文字を白に */
+}
+
+/* ========== メイン領域 ========== */
+main {
+  padding: 10px;               /* 上下左右 10px の内余白 */
+}
+
+/* Flex コンテナ（子要素を均等配置） */
+#parent {
+  display: flex;
+  justify-content: space-evenly;  /* 端を含め均等配置 */
+  flex-wrap: wrap;                 /* 収まらないときは折り返し */
+}
+
+/* 各カード（.contents） */
+.contents {
+  border: 3px solid rgb(238, 204, 204); /* 枠線 */
+  flex-basis: 25%;                      /* 幅は親の 25%（width ではなく flex-basis） */
+  padding: 10px 15px;                   /* 内余白：上下10px 左右15px */
+  margin: 20px 0;                       /* 外余白：上下20px 左右0 */
+  text-align: center;                   /* 中身を中央揃え */
+  box-sizing: border-box;               /* 枠線・内余白を幅に含める（崩れ防止） */
+}
+
+/* カード内の見出し（h2） */
+.contents h2 {
+  font-size: 25px;
+  border-bottom: 3px dotted rgb(236, 122, 122);  /* 下線：点線 */
+  display: inline-block;                         /* 下線の長さを文字幅に合わせる */
+  margin-bottom: 10px;
+}
+
+/* h2 の前に ● を表示 */
+.contents h2::before {
+  content: "●";
+  color: rgb(239, 111, 139);
+  margin-right: 8px;
+}
+
+/* 2つ目の p の「最初の1文字」だけ強調（例：傘） */
+.contents p:nth-of-type(2)::first-letter {
+  font-weight: bold;              /* 太字 */
+  color: rgb(97, 206, 249);       /* 水色 */
+}
+
+/* 画像の共通指定 */
+.contents img {
+  width: 70%;
+  height: auto;
+  margin: 10px 0;                 /* 上下10px 左右0 */
+}
+/* ========== フッター ========== */
+footer {
+  background: rgb(244, 79, 79);   /* 背景色 */
+  text-align: center;             /* 中身を中央揃え */
+  padding: 15px;                  /* 上下左右に余白をつけると見やすい */
+}
+
+footer a {
+  color: rgb(255, 255, 255);      /* リンク文字は白 */
+  text-decoration: none;          /* 下線を消したい場合はこれを追加 */
+  margin: 0 10px;                 /* リンクが複数なら間隔を少し空ける */
+}
+
+footer a:visited {
+  color: rgb(193, 234, 251);      /* 訪問済みのリンク色 */
+}
+
+footer a:hover {
+  color: rgb(245, 178, 168);      /* マウスをのせたときの色 */
+}
+/* ========== レスポンシブ（画面幅 768px 以下） ========== */
+@media (max-width: 768px) {
+
+  /* 見出し・本文の文字サイズ */
+  h2 {
+    font-size: 30px;
+  }
+  p {
+    font-size: 25px;
+  }
+
+  /* 子ブロックを縦並びにする */
+  #parent {
+    display: flex;           /* 念のため指定を維持 */
+    flex-direction: column;  /* 縦並び */
+    align-items: center;     /* 中央寄せ（任意） */
+  }
+
+  /* （任意）1カラムの見やすさ調整 */
+  .contents {
+    flex-basis: 100%;        /* 横幅を親いっぱいに */
+    max-width: 700px;        /* 広がりすぎ防止の上限（好みで調整可） */
+    margin: 15px 0;
+  }
+}
